@@ -6,13 +6,18 @@
 int main() {
 
   
-  int prime_numbers[max_numbers], list_prime[max_numbers], numbers;;
+  int prime_numbers[max_numbers], list_prime[max_numbers], quantity_of_numbers;
+  int* indices;
 
-  scanf("%d",&numbers);
-  // //int *prime_numbers = malloc(max_numbers * sizeof(*prime_numbers));
+  scanf("%d",&quantity_of_numbers);
+
+  indices = malloc(quantity_of_numbers * sizeof(int));
+
+  for (int i = 0; i < quantity_of_numbers; i++)
+    scanf("%d", &indices[i]);
 
   int indicator = 0;
-  for (int index=2; index<=max_numbers; index++) {
+  for (int index=1; index<=max_numbers; index++) {
     prime_numbers[index] = index;
   }
 
@@ -26,29 +31,28 @@ int main() {
               if (prime_numbers[i]*j > max_numbers)
                   break;
               else
-                  // Instead of deleteing , making elemnets 0
+              
                   prime_numbers[prime_numbers[i]*j]=0;
           }
       }
       i++;
   }
   int count = 0;
-  for(i = 2; i<=10000; i++)
+  for(int index = 1; index<=max_numbers; index++)
   {
-      //If number is not 0 then it is prime
-      if (prime_numbers[i]!=0){
-          //printf("count %d\n",count);
-          //printf("%d\n",prime_numbers[i]);
-          list_prime[count] = prime_numbers[i];
+   
+      if (prime_numbers[index]!=0){
+          list_prime[count] = prime_numbers[index];
           count++;
       }
   }
 
-  for (int i = 0; i < numbers; i++)
+  for (int index = 0; index < quantity_of_numbers; index++)
   {
-    printf("%d\n",list_prime[i]);
-  }
+    printf("%d ",list_prime[indices[index]]);
   
+  }
+
 
   return 0;
 }
